@@ -3,13 +3,11 @@ import pytz
 from fyers_api import fyersModel
 from Init_data import InitData
 
+class StockAnalysis:
 
-class stockAnalysis:
-
-    def __init__(self):
-        self.fyers = fyersModel.FyersModel(token=InitData.access_token, is_async=False,
-                                           client_id=InitData.client_id, log_path=InitData.log_path)
-        self.symbol =
+    def __init__(self, stock_details):
+        self.fyers = fyersModel.FyersModel(token=InitData.access_token, is_async=False,client_id=InitData.client_id, log_path=InitData.log_path)
+        self.stock_details = stock_details
 
     def convertEpochToIST(self, epochtime):
         epoch_time = epochtime
@@ -23,7 +21,12 @@ class stockAnalysis:
         return date_str, time_str
 
     def HistoryData(self):
-        data = {"symbol": "NSE:SBIN-EQ", "resolution": "30", "date_format": "1",
+        time_from = self.stock_details["TimeFrom"]
+        time_to = self.stock_details["Timeto"]
+        time_from_epoch = int(datetime.datetime.strptime(time_from, "%Y-%m-%d").timestamp())
+        time_to_epoch = int(datetime.datetime.strptime(time_to, "%Y-%m-%d").timestamp())
+
+        data = {"symbol": self.stock_details["symbol"], "resolution": "30", "date_format": "0",
                 "range_from": "1622097600", "range_to": "1622097685", "cont_flag": "1"}
 
         print(self.fyers.history(data))
