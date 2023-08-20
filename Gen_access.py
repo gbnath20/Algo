@@ -3,7 +3,7 @@ from fyers_api import fyersModel
 import webbrowser
 import hashlib
 
-
+#demo commit line
 redirect_uri= "https://www.google.com/"  ## redircet_uri you entered while creating APP.
 client_id = "LB65IDSEJH-100"                                          ## Client_id here refers to APP_ID of the created app
 secret_key = "22POK2EVJ2"                                           ## app_secret key which you got after creating the app 
