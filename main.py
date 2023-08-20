@@ -1,12 +1,13 @@
-from Fyers_algo import stockAnalysis
+from Fyers_algo import StockAnalysis
 from Init_data import InitData
 from fyers_api import fyersModel
 
+
 if __name__ == '__main__':
-    stockAnalysis = stockAnalysis()
+
     StockDetails = {}
-    StockDetails["symbol"] = "TCS-EQ"
-    StockDetails["TimeFrom"] = "2022-01-01"
-    StockDetails["Timeto"] = "2022-10-01"
-    stockAnalysis.__init__(StockDetails)
-    stockAnalysis.HistoryData()
+    StockDetails["symbol"] = "NSE:SBIN-EQ"
+    StockDetails["TimeFrom"] = "2023-01-01"
+    StockDetails["Timeto"] = "2023-07-01"
+    stock_analysis = StockAnalysis(StockDetails)
+    stock_analysis.HistoryData()
