@@ -4,7 +4,7 @@ from fyers_api import fyersModel
 from Init_data import InitData
 
 class StockAnalysis:
-
+    #comment check
     def __init__(self, stock_details):
         self.fyers = fyersModel.FyersModel(token=InitData.access_token, is_async=False,client_id=InitData.client_id, log_path=InitData.log_path)
         self.stock_details = stock_details
