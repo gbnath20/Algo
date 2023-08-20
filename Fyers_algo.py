@@ -1,7 +1,7 @@
 import datetime
 import pytz
 from fyers_api import fyersModel
-from .Init_data import InitData
+from Init_data import InitData
 
 class StockAnalysis:
     #comment check
@@ -23,16 +23,15 @@ class StockAnalysis:
     def HistoryData(self):
         time_from = self.stock_details["TimeFrom"]
         time_to = self.stock_details["Timeto"]
-        time_from_date = datetime.datetime.strptime(time_from, "%Y-%m-%d").date()
-        time_to_date = datetime.datetime.strptime(time_to, "%Y-%m-%d").date()
+        time_from_epoch = int(datetime.datetime.strptime(time_from, "%Y-%m-%d").timestamp())
+        time_to_epoch = int(datetime.datetime.strptime(time_to, "%Y-%m-%d").timestamp())
 
-        data = {"symbol": self.stock_details["symbol"], "resolution": "30", "date_format": "1",
-                "range_from": time_from_date, "range_to": time_to_date, "cont_flag": "1"}
+        data = {"symbol": self.stock_details["symbol"], "resolution": "30", "date_format": "0",
+                "range_from": "1622097600", "range_to": "1622097685", "cont_flag": "1"}
 
-        #print(self.fyers.history(data))
+        print(self.fyers.history(data))
 
         History_data = self.fyers.history(data)
-        return History_data
 
         print("\n\n\n")
         epochtime = History_data['candles'][0][0]
@@ -49,4 +48,3 @@ class StockAnalysis:
         # print("Lowest Value:", LowestValue)
         # print("Close Value:", CloseValue)
         # print("Volume:", volume)
-        
